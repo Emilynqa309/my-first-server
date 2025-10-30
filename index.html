@@ -1,18 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My First Server</title>
-    <style>
-        /* Your CSS goes here */
-    </style>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+  <title>Catch the Ghost </title>
+  <style>
+    body {
+      overflow: hidden;
+      color: rgb(255, 255, 255);
+      font-family: "Creepster", system-ui;
+      text-align: center;
+      background: linear-gradient(to right, #1e0b4f, #4b0082);
+    }
+
+    h1 {
+      position: absolute;
+      top: 10px;
+      width: 100%;
+      font-size: 6rem;
+      color: rgb(123, 0, 0);
+      text-shadow: 0 0 15px rgb(194, 169, 255);
+    }
+
+    #score {
+      position: absolute;
+      top: 670px;
+      margin: 15px;
+      width: 100%;
+      font-size: 30px;
+    }
+
+    .ghost {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: url('file:///Users/emilyquindi/Desktop/Server/my-first-server/images/ghost.png') no-repeat center/contain;
+      cursor: pointer;
+      animation: float 5s linear infinite;
+    }
+
+    @keyframes float {
+      from { transform: translateY(0px); }
+      to { transform: translateY(-20px); }
+    }
+  </style>
 </head>
 <body>
-    <!-- Your HTML goes here -->
-    
-    <script>
-        // Your javascript code (optional)
-    </script>
+  <h1>Catch the Ghosts </h1>
+  <div id="score">Score: 0</div>
+
+  <script>
+    let score = 0;
+
+    // ghosts
+    function createGhost() {
+      const ghost = document.createElement('div');
+      ghost.classList.add('ghost');
+
+      // random position
+      const x = Math.random() * (window.innerWidth - 100);
+      const y = Math.random() * (window.innerHeight - 100);
+      ghost.style.left = x + "px";
+      ghost.style.top = y + "px";
+
+      document.body.appendChild(ghost);
+
+      setTimeout(() => {
+        if (document.body.contains(ghost)) {
+          ghost.remove();
+        }
+      }, 2500);
+
+      ghost.addEventListener('click', () => {
+        ghost.remove();
+        score++;
+        document.getElementById('score').textContent = "Score: " + score;
+      });
+    }
+
+    setInterval(createGhost, 800);
+  </script>
 </body>
 </html>
