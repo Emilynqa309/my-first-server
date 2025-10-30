@@ -6,6 +6,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
   <title>Catch the Ghost </title>
+  <img src="images/ghost.png" alt="Ghost">
+
   <style>
     body {
       color: rgb(255, 255, 255);
@@ -57,6 +59,7 @@
     function createGhost() {
       const ghost = document.createElement('div');
       ghost.classList.add('ghost');
+      console.log("👻 ghost created");
 
       // random position
       const x = Math.random() * (window.innerWidth - 100);
